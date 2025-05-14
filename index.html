@@ -282,42 +282,119 @@
             transform: scale(1.1);
         }
         
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 80%;
-            max-height: 80%;
-            overflow: auto;
-            z-index: 101;
-            text-align: center;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-        }
-        
-        .modal.show {
-            display: block;
-        }
-        
-        .modal-content {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #ff6b88;
-        }
+      /* Updated Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    background: #fff9f9;
+    padding: 40px 30px 30px;
+    border-radius: 20px;
+    max-width: 80%;
+    max-height: 80%;
+    z-index: 101;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 105, 140, 0.3);
+    border: 3px solid #ffb6e6;
+    font-family: 'Comic Neue', cursive;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 214, 235, 0.5) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 214, 235, 0.5) 0%, transparent 20%);
+}
+
+.modal.show {
+    display: block;
+    animation: modalEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-content {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #ff6b88;
+    position: relative;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px rgba(255, 182, 230, 0.5);
+}
+
+.modal-content h3 {
+    font-family: 'Pacifico', cursive;
+    color: #ff6b88;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(255, 214, 235, 0.8);
+}
+
+.modal-content p {
+    margin-bottom: 10px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ff6b88;
+    transition: transform 0.3s;
+    background: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.close-modal:hover {
+    transform: rotate(90deg) scale(1.1);
+    color: #ff4757;
+}
+
+/* Add some decorative elements */
+.modal:before {
+    content: '🎀';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    font-size: 2rem;
+    z-index: 1;
+}
+
+.modal:after {
+    content: '🎊';
+    position: absolute;
+    bottom: -8px;
+    right: 20px;
+    font-size: 2rem;
+    z-index: 1;
+}
+
+@keyframes modalEntrance {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5) rotate(-5deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Add floating hearts around modal */
+.modal-heart {
+    position: absolute;
+    font-size: 20px;
+    color: #ff6b88;
+    animation: float-hearts 4s linear infinite;
+    opacity: 0.7;
+    z-index: -1;
+}
     </style>
 </head>
 <body>
@@ -473,6 +550,37 @@ Keep walking your path with strength and hope</p>
             e.stopPropagation();
             hideSurprise();
         });
+        function addModalHearts() {
+    const modal = document.getElementById('messageModal');
+    const positions = [
+        {top: '10%', left: '5%'},
+        {top: '15%', right: '5%'},
+        {bottom: '20%', left: '10%'},
+        {bottom: '15%', right: '10%'},
+        {top: '30%', left: '2%'},
+        {top: '40%', right: '2%'}
+    ];
+    
+    positions.forEach(pos => {
+        const heart = document.createElement('div');
+        heart.className = 'modal-heart';
+        heart.innerHTML = '❤️';
+        heart.style.top = pos.top || '';
+        heart.style.bottom = pos.bottom || '';
+        heart.style.left = pos.left || '';
+        heart.style.right = pos.right || '';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+        modal.appendChild(heart);
+    });
+}
+
+// Call this function when showing the modal
+function showMessageModal() {
+    messageModal.classList.add('show');
+    overlay.classList.add('show');
+    addModalHearts();
+}
     </script>
 </body>
 </html>
