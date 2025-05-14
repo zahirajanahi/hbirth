@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Weam!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Neue:wght@700&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Comic Neue', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 3px 3px 0 #ff6b88, 
+                         6px 6px 0 #ff8e53,
+                         9px 9px 0 #ffcc5c;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite alternate;
+        }
+        
+        h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+        }
+        
+        .cake {
+            width: 200px;
+            height: 150px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .plate {
+            width: 220px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -10px;
+            left: -10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .layer {
+            width: 180px;
+            height: 50px;
+            background: #ffccf3;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .layer-top {
+            width: 200px;
+            height: 40px;
+            background: #ffb6e6;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 70px;
+            left: 0;
+        }
+        
+        .icing {
+            width: 200px;
+            height: 20px;
+            background: #ff8bd8;
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            bottom: 110px;
+            left: 0;
+        }
+        
+        .candle {
+            width: 10px;
+            height: 40px;
+            background: #ff6b88;
+            position: absolute;
+            bottom: 130px;
+            left: 95px;
+            z-index: 2;
+        }
+        
+        .flame {
+            width: 15px;
+            height: 30px;
+            background: #ffde59;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            bottom: 170px;
+            left: 92.5px;
+            box-shadow: 0 0 20px #ffde59, 0 0 40px #ff9e4f;
+            animation: flicker 0.5s infinite alternate;
+            z-index: 3;
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50%;
+            animation: float-up 8s linear infinite;
+            z-index: 1;
+        }
+        
+        .balloon:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background: #333;
+            top: 80px;
+            left: 29px;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #f00;
+            animation: confetti-fall 5s linear infinite;
+            opacity: 0.7;
+        }
+        
+        .hearts {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b88;
+            animation: float-hearts 6s linear infinite;
+            opacity: 0;
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+        
+        span {
+            color: #ff6b88;
+            font-weight: bold;
+        }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes flicker {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes float-hearts {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .message {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 20px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+            cursor: pointer;
+        }
+        
+        /* Styles for surprise images */
+        .surprise-image {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            max-width: 80%;
+            max-height: 80%;
+           
+            opacity: 0;
+            transition: all 0.5s ease-out;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+      .surprise-image.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1) rotate(360deg);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+        
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* Third image in bottom right */
+        .third-image {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s;
+        }
+        
+        .third-image:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+            z-index: 101;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+        
+        .modal.show {
+            display: block;
+        }
+        
+        .modal-content {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ff6b88;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday Weam!</h1>
+        <h2 id="clickHere">click here! 🎉</h2>
+        
+        <div class="cake">
+            <div class="plate"></div>
+            <div class="layer"></div>
+            <div class="layer-top"></div>
+            <div class="icing"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+        </div>
+        
+        <div class="message" id="giftMessage">
+            <p>Wishing you a day filled with love, laughter, and all the happiness in the world! 🎂 <span>Click here to Take your Gift</span>  🎈</p>
+        </div>
+    </div>
+    
+    <!-- Third image in bottom right -->
+    <img src="./_Open_me___delivery_stickers__Sticker_for_Sale_by_Al_Store-removebg-preview.png" alt="Special Message" class="third-image" id="thirdImage">
+    
+    <!-- Modal for third image -->
+    <div class="modal" id="messageModal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <h3>A Special Message For You!</h3>
+            <p>Dear Weam,</p>
+            <p>This is not AI generated  it’s written from the heart. <br>
+I wish you a truly happy birthday filled with all the success your heart desires. <br>
+ May you achieve every goal you've set for yourself inchaallah  <br>
+
+Thank you for opening your heart to me Thank you for always being so supportive, kind, and genuine <br>
+ Your presence has been a light in my life and I’m deeply grateful for you <br>
+
+May Allah bless you endlessly guide your steps and make every wish you hold come true <br>
+Keep walking your path with strength and hope</p>
+          
+         
+        </div>
+    </div>
+    
+    <!-- Surprise image elements -->
+    <div class="overlay" id="overlay"></div>
+    <img src="./WhatsApp Image 2025-05-13 at 12.53.52 (1).jpeg" alt="First Surprise!" class="surprise-image" id="surpriseImage1">
+    <img src="./WhatsApp_Image_2025-05-13_at_13.07.47-removebg-preview.png" alt="Second Surprise!" class="surprise-image" id="surpriseImage2">
+    
+    <div class="footer">
+        Coded with ❤️ by <span>Zahira</span>
+    </div>
+    
+    <script>
+        // Create balloons
+        const colors = ['#ff6b88', '#ff8e53', '#ffcc5c', '#88ff6b', '#6b88ff', '#d16bff'];
+        for (let i = 0; i < 15; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.animationDelay = Math.random() * 5 + 's';
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(balloon);
+        }
+        
+        // Create confetti
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = -Math.random() * 100 + 'px';
+            confetti.style.animationDelay = Math.random() * 5 + 's';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            document.body.appendChild(confetti);
+        }
+        
+        // Create floating hearts
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'hearts';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(heart);
+        }
+        
+        // Surprise image functionality
+        const clickHere = document.getElementById('clickHere');
+        const giftMessage = document.getElementById('giftMessage');
+        const surpriseImage1 = document.getElementById('surpriseImage1');
+        const surpriseImage2 = document.getElementById('surpriseImage2');
+        const overlay = document.getElementById('overlay');
+        const thirdImage = document.getElementById('thirdImage');
+        const messageModal = document.getElementById('messageModal');
+        const closeModal = document.querySelector('.close-modal');
+        
+        function showSurprise1() {
+            // Hide any other images first
+            surpriseImage2.classList.remove('show');
+            
+            // Show this image
+            surpriseImage1.classList.add('show');
+            overlay.classList.add('show');
+        }
+        
+        function showSurprise2() {
+            // Hide any other images first
+            surpriseImage1.classList.remove('show');
+            
+            // Show this image
+            surpriseImage2.classList.add('show');
+            overlay.classList.add('show');
+        }
+        
+        function hideSurprise() {
+            surpriseImage1.classList.remove('show');
+            surpriseImage2.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+        
+        function showMessageModal() {
+            messageModal.classList.add('show');
+            overlay.classList.add('show');
+        }
+        
+        function hideMessageModal() {
+            messageModal.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+        
+        // Click handlers
+        clickHere.addEventListener('click', showSurprise1);
+        giftMessage.addEventListener('click', showSurprise2);
+        thirdImage.addEventListener('click', showMessageModal);
+        closeModal.addEventListener('click', hideMessageModal);
+        
+        // Click overlay to hide everything
+        overlay.addEventListener('click', function() {
+            hideSurprise();
+            hideMessageModal();
+        });
+        
+        // Also hide when clicking the images themselves
+        surpriseImage1.addEventListener('click', function(e) {
+            e.stopPropagation();
+            hideSurprise();
+        });
+        
+        surpriseImage2.addEventListener('click', function(e) {
+            e.stopPropagation();
+            hideSurprise();
+        });
+    </script>
+</body>
+</html>
